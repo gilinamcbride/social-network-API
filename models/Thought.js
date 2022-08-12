@@ -52,10 +52,6 @@ const ThoughtSchema = new Schema(
       required: true,
     },
     reactions: [ReactionSchema],
-    thoughtId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
   },
   {
     toJSON: {
