@@ -63,7 +63,6 @@ const userController = {
       .then((body) => {
         return Thought.deleteMany({ username: { $in: body.username } });
       })
-      // somehow take the user id an then also delete all thoughts with that userId?
       .then((userData) => {
         if (!userData) {
           res.status(404).json({ message: "No user found with this id!" });
