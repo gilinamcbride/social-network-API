@@ -1,4 +1,4 @@
-## Social Network API
+# Social Network API
 
 ## Table of Contents
 
@@ -17,7 +17,20 @@
 
 ## Description
 
+This is a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. This application uses Express.js for routing, a MongoDB database, and the Mongoose ODM.
+
 ## Usage
+
+- Clone the repository into your directory
+- Open the command line in this directory
+- Install 'npm install'
+- Invoke the command 'npm start' to start the server and the Mongo database
+- Use insomnia to test the CRUD Operations on:
+  - /api/users
+  - /api/thoughts
+  - /api/users/:userId/friends/:friendId
+  - /api/thoughts/:thoughtId/reactions
+  - /api/thoughts/:thoughtId/reactions/:reactionId
 
 ## Requirements
 
@@ -33,9 +46,11 @@
 
 ## Application
 
-![Screenshot of application1]()
+Screenshot of Example Route in Insomnia
 
-[Walkthrough Video]()
+![Screenshot of application](./utils/screenshot.png)
+
+[Walkthrough Video](https://drive.google.com/file/d/12hbcaQ7YsnSkNfZavXGi5IzbyLJRJksP/view?usp=sharing)
 
 ## Questions?
 
