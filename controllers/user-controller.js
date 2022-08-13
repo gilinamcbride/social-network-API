@@ -1,15 +1,15 @@
-const { User } = require("../models");
+const { User, Thought } = require("../models");
 
 const userController = {
   getAllUsers(req, res) {
     User.find({})
       .populate({
         path: "thoughts",
-        select: "-__v",
+        select: "-__v -username -thoughtText -createdAt",
       })
       .populate({
         path: "friends",
-        select: "-__v",
+        select: "-__v -username -email -thoughts",
       })
       .select("-__v")
       .sort({ _id: -1 })
@@ -21,7 +21,7 @@ const userController = {
     User.findOne({ _id: params.id })
       .populate({
         path: "thoughts",
-        select: "-__v",
+        select: "-__v -username -thoughtText -createdAt",
       })
       .populate({
         path: "friends",
@@ -58,8 +58,11 @@ const userController = {
       })
       .catch((err) => res.status(400).json(err));
   },
-  deleteUser({ params }, res) {
-    User.findOneAndDelete({ _id: params.id })
+  deleteUser({ params, body }, res) {
+    User.findOneAndDelete({ _id: params.id }, body)
+      .then((body) => {
+        return Thought.deleteMany({ username: { $in: body.username } });
+      })
       // somehow take the user id an then also delete all thoughts with that userId?
       .then((userData) => {
         if (!userData) {
